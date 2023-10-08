@@ -48,8 +48,8 @@ def edit_treinador(id):
             password = request.form["password"]
             team = request.form["team"]
 
-            treinador = Treinador(nickname, first_name, last_name, email, password, team)
-            treinador.edi_treinador(id)
+            treinador = Treinador()
+            treinador.edi_treinador(nickname, first_name, last_name, email, password, team, id)
 
             flash("Dados atualizados", "success")
             return redirect(url_for("index"))

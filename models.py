@@ -35,10 +35,10 @@ class Treinador:
         cur.execute("INSERT INTO treinador(NICKNAME, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, TEAM) values (?,?,?,?,?,?)", (nickname, first_name, last_name, email, password, team))
         con.commit()
 
-    def edi_treinador(self, id):
+    def edi_treinador(self, nickname, first_name, last_name, email, password, team, id):
         con = sql.connect("treinador_db.db")
         cur = con.cursor()
-        cur.execute("UPDATE treinador SET NICKNAME=?, FIRST_NAME=?, LAST_NAME=?, EMAIL=?, PASSWORD=?, TEAM=? WHERE ID=?", (self.nickname, self.first_name, self.last_name, self.email, self.password, self.team, id))
+        cur.execute("UPDATE treinador SET NICKNAME=?, FIRST_NAME=?, LAST_NAME=?, EMAIL=?, PASSWORD=?, TEAM=? WHERE ID=?", (nickname, first_name, last_name, email, password, team, id))
         con.commit()
 
     def del_treinador(self, id):
