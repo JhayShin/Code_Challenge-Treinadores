@@ -1,4 +1,3 @@
-#importação das bibliotecas necessarias 
 from flask import Flask, render_template, request, redirect, url_for, flash
 import requests
 import json
@@ -6,8 +5,9 @@ import  sqlite3 as sql
 from models import Treinador, Pokemon
 
 
-app = Flask(__name__)
 
+app = Flask(__name__)
+exec(open('treinador_db.py').read())
 
 @app.route("/")
 @app.route("/index")

@@ -1,10 +1,7 @@
 import sqlite3 as sql
 
 con = sql.connect('treinador_db.db')
-
 cur = con.cursor()
-
-cur.execute('DROP TABLE IF EXISTS treinador')
 
 
 sql = '''CREATE TABLE IF NOT EXISTS "treinador" (
@@ -32,7 +29,5 @@ sql1 = '''CREATE TABLE IF NOT EXISTS "pokemons" (
 
 cur.execute(sql)
 cur.execute(sql1)
-
-
 con.commit()
 con.close()
