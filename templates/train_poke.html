@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<h1>Informações do Treinador</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nickname</th>
+                <th scope="col">First_Name</th>
+                <th scope="col">Last_Name</th>
+                <th scope="col">Email</th>
+                <!--<th scope="col">Password</th>-->
+                <th scope="col">Team</th>
+            </tr>
+        </thead>
+        
+        {% if datas1 %}
+        <tr>
+            <td>{{datas1["ID"]}}</td>
+            <td>{{datas1["NICKNAME"]}}</td>
+            <td>{{datas1["FIRST_NAME"]}}</td>
+            <td>{{datas1["LAST_NAME"]}}</td>
+            <td>{{datas1["EMAIL"]}}</td>
+            <td>{{datas1["TEAM"]}}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">Treinador não encontrado</td>
+        </tr>
+        {% endif %}
+        </table>
+
+        <form class="row g-3" method="post" action="{{url_for('train_poke', id=datas1.ID)}}">
+            <label>Acidionar Pokemon</label>
+            <div class="col-auto">
+              <input type="text" name="poke_nome" required class="form-control" placeholder="ID Pokemon">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3">Adicionar</button>
+            </div>
+        </form>
+
+
+    <h4>Pokemons:</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Foto</th>
+                <th scope="col">Poke_ID</th>
+                <th scope="col">Poke_Name</th>
+                <th scope="col">Treinador_ID</th>
+            </tr>
+        </thead>
+
+        {% if datas2 %}
+            {% for row in datas2 %}
+                <tr>
+                    
+                    <td><img src="{{row.POKE_FOTO}}" class="img-thumbnail" alt="..."></td>
+                    <td>{{row.POKE_ID}}</td>
+                    <td>{{row.POKE_NOME}}</td>
+                    <!--<td>{{row.TREINADOR_ID}}</td>-->
+                    <td><a href="{{url_for('delete_poke', id=row.ID, t_id=row.TREINADOR_ID)}}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja apagar?')">Deletar</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">Não Possui Pokemons</td>
+        </tr>
+        {% endif %}
+    </table>
+
+{% endblock %}
