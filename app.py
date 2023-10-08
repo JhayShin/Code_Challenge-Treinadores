@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-import requests
-import json
-import  sqlite3 as sql
+import requests, json
 from models import Treinador, Pokemon
 
 
